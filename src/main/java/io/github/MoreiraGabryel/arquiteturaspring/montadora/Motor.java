@@ -2,8 +2,8 @@ package io.github.MoreiraGabryel.arquiteturaspring.montadora;
 
 public class Motor {
     private String modelo;
-    private String cavalos;
-    private String cilindros;
+    private int cavalos;
+    private int cilindros;
     private Double litragem;
     private  TipoMotor tipo;
 
@@ -15,19 +15,19 @@ public class Motor {
         this.modelo = modelo;
     }
 
-    public String getCavalos() {
+    public int getCavalos() {
         return cavalos;
     }
 
-    public void setCavalos(String cavalos) {
+    public void setCavalos(int cavalos) {
         this.cavalos = cavalos;
     }
 
-    public String getCilindros() {
+    public int getCilindros() {
         return cilindros;
     }
 
-    public void setCilindros(String cilindros) {
+    public void setCilindros(int cilindros) {
         this.cilindros = cilindros;
     }
 
@@ -45,5 +45,16 @@ public class Motor {
 
     public void setTipo(TipoMotor tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Motor{" +
+                "litragem=" + litragem +
+                ", modelo='" + modelo + '\'' +
+                ", cavalos='" + cavalos + '\'' +
+                ", cilindros='" + cilindros + '\'' +
+                ", tipo=" + tipo +
+                '}';
     }
 }

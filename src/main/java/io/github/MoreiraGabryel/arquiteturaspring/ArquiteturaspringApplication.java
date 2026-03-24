@@ -1,40 +1,29 @@
 package io.github.MoreiraGabryel.arquiteturaspring;
 
 import org.springframework.boot.Banner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.lang.module.Configuration;
 
 @SpringBootApplication
 public class ArquiteturaspringApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(ArquiteturaspringApplication.class, args);
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(Application.class);
 
-		// Banir o banner de inicialização do Spring {alias muito bom }
+		// 1. Instanciamos o builder apontando para a classe correta (ArquiteturaspringApplication)
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(ArquiteturaspringApplication.class);
+
+		// 2. Desativa o Banner (Alias muito bom mesmo para logs limpos)
 		builder.bannerMode(Banner.Mode.OFF);
 
-		//Pegar um Bean que está dentro do container atráves desse metodo
+		// 3. Define o Profile (Opcional)
+		// builder.profiles("producao");
 
-		ConfigurableApplicationContext applicationContext = builder.context();
-		// Vai dar erro pq nao tem Bean
+		// 4. Executa a aplicação e captura o contexto
+		ConfigurableApplicationContext context = builder.run(args);
 
-		 var produtoRepository = applicationContext.getBean("produtoRepository");
-
-		 //metodo de produção
-		builder.profiles("producao");
-
-		// nao correto fazer isso aqui mas vai que um dia precisa fazer um debug
-		builder.properties();
-
-		// Rodar a builder com o respectivo metodo.
-		builder.run(args);
-
-
+		// 5. Agora você pode buscar Beans com segurança
+		// var produtoRepository = context.getBean("produtoRepository");
+		// System.out.println("Contexto iniciado com sucesso!");
 	}
-
 }
