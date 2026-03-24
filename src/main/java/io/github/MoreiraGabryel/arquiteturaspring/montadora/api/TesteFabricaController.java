@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TesteFabricaController {
         @Autowired
         //@Aspirado
-        @Eletrico
-        //@Turbo
+       // @Eletrico
+        @Turbo
 
         /*
         Específicar o Bean se por acaso ter Bean do mesmo tipo
