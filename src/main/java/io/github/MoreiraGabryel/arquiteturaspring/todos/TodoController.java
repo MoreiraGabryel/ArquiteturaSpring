@@ -1,6 +1,8 @@
 package io.github.MoreiraGabryel.arquiteturaspring.todos;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("todos")
@@ -15,7 +17,16 @@ public class TodoController {
     // CAMINHO DE SAVE
     @PostMapping
     public TodoEntity salvar(@RequestBody TodoEntity todo) {
-        return this.service.salvar(todo);
+
+        // Mensagem de Erro caso aja um erro ao salvar
+
+        try {
+            return this.service.salvar(todo);
+        }catch (IllegalArgumentException e ){
+            var mensgemErro = e.getMessage();
+            throw new ResponseStatusException(HttpStatus.CONFLICT, mensgemErro);
+        }
+
     }
 
     //Atualizar o ToDOS que ja tem um ID
